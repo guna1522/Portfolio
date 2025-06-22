@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gunasekaran | Portfolio</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      scroll-behavior: smooth;
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(135deg, #001f3f, #005073, #00a8cc);
+      color: #fff;
+      padding-top: 70px;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background: linear-gradient(135deg, #001f3f, #005073, #00a8cc);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    }
+
+    .logo {
+      font-weight: bold;
+      font-size: 1.8rem;
+      color: white;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 1rem;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: white;
+      font-weight: 500;
+      padding: 0.5rem 0.8rem;
+      border-radius: 5px;
+      transition: background 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .menu-toggle {
+      display: none;
+      font-size: 2rem;
+      color: white;
+      cursor: pointer;
+    }
+
+    #hero {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      background: url('./cover ph.jpg') no-repeat center center/cover;
+      padding: 3rem 1.5rem;
+      margin: 0%;
+    }
+
+    .hero-text {
+      max-width: 600px;
+      opacity: 0;
+      transform: translateX(-40px);
+      transition: all 1.5s ease;
+    }
+
+    .hero-text.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    #hero h1 {
+      font-size: 2.8rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      word-break: break-word;
+    }
+
+    #hero h2 {
+      font-size: 1.6rem;
+      font-weight: 500;
+      color: #cceeff;
+    }
+
+    .cta-icons {
+      margin-top: 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .cta-icons .icon {
+      color: white;
+      font-size: 1.8rem;
+      position: relative;
+      transition: transform 0.3s ease;
+    }
+
+    .cta-icons .icon:hover {
+      transform: scale(1.2);
+    }
+
+    .cta-icons .icon::after {
+      content: attr(title);
+      position: absolute;
+      top: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0, 0, 0, 0.75);
+      color: #fff;
+      font-size: 0.75rem;
+      padding: 4px 8px;
+      border-radius: 4px;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    .cta-icons .icon:hover::after {
+      opacity: 1;
+      transform: translateX(-50%) translateY(-5px);
+    }
+
+    .icon.github:hover { color: #ccc; }
+    .icon.resume:hover { color: #00e6e6; }
+    .icon.whatsapp:hover { color: #25D366; }
+    .icon.linkedin:hover { color: #0A66C2; }
+    .icon.phone:hover { color: #66ffff; }
+
+    .profile-img {
+      width: 280px;
+      height: 280px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-top: 2rem;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+      opacity: 0;
+      transform: translateX(40px);
+      transition: all 1.5s ease;
+    }
+
+    .profile-img.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    main {
+      padding: 2rem 1.5rem;
+      background: #0a0f1e;
+      color: #e0e0e0;
+    }
+
+    section {
+      background: #111827;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 168, 204, 0.1);
+      margin-bottom: 2rem;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 1.5s ease;
+    }
+
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    section h2 {
+      font-size: 1.7rem;
+      color: #00e6e6;
+      margin-bottom: 1rem;
+    }
+
+    .education-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+    }
+
+    .education-card {
+      background: linear-gradient(135deg, #001f3f, #005073, #00a8cc);
+      border: 2px solid #00e6e6;
+      border-radius: 10px;
+      padding: 1rem;
+      color: #ffffff;
+    }
+
+    footer {
+      background: #001f3f;
+      text-align: center;
+      padding: 1rem;
+      color: #aaa;
+    }
+    .project-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.project-card {
+  background: linear-gradient(135deg, #1a1a40, #004466, #007c91);
+  border: 2px solid #00e6e6;
+  border-radius: 10px;
+  padding: 1rem;
+  color: #ffffff;
+  font-family: 'Montserrat', sans-serif;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card a {
+  color: #00e6e6;
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 15px rgba(0, 230, 230, 0.4);
+}
+
+
+    /* Responsive Navigation */
+    @media (max-width: 768px) {
+      .nav-links {
+        position: fixed;
+        top: 70px;
+        right: -250px;
+        width: 220px;
+        height: calc(100% - 70px);
+        background: #001f3f;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 2rem 1rem;
+        gap: 1.5rem;
+        transition: right 0.3s ease;
+      }
+
+      .nav-links.active {
+        right: 0;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      #hero {
+        flex-direction: column;
+        text-align: center;
+        padding-top: 6rem;
+      }
+
+      .hero-text {
+        width: 100%;
+      }
+
+      .profile-img {
+        margin: 1.5rem auto 0;
+      }
+    }
+    /* Add this to your <style> section */
+.animated-3d {
+  transform: perspective(800px) rotateY(40deg) scale(0.95);
+  transition: transform 1s cubic-bezier(0.4, 0.2, 0.2, 1);
+  opacity: 0.8;
+}
+.animated-3d.visible {
+  transform: perspective(800px) rotateY(0deg) scale(1);
+  opacity: 1;
+}
+
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="logo">Gunasekaran</div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about">About</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#certificates">Certificates</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="menu-toggle" id="menuToggle">
+      <i class="fas fa-bars"></i>
+    </div>
+  </nav>
+
+  <section id="hero">
+    <div class="hero-text">
+      <h2>I'm</h2>
+      <h1>Gunasekaran M</h1>
+      <h2>Full Stack Developer</h2>
+      <div class="cta-icons">
+        <a href="https://github.com/guna1522" target="_blank" title="GitHub" class="icon github"><i class="fab fa-github"></i></a>
+        <a href="#" target="_blank" title="Resume" class="icon resume"><i class="fas fa-file-alt"></i></a>
+        <a href="https://wa.me/919345621193" target="_blank" title="WhatsApp" class="icon whatsapp"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://www.linkedin.com/in/guna93" target="_blank" title="LinkedIn" class="icon linkedin"><i class="fab fa-linkedin"></i></a>
+        <a href="tel:+919345621193" title="Call" class="icon phone"><i class="fas fa-phone-alt"></i></a>
+      </div>
+    </div>
+    <img src="./guna-removebg-preview.png" alt="Gunasekaran Profile" class="profile-img" />
+  </section>
+
+  <main>
+    <section id="about">
+      <h2>About Me</h2>
+      <p>I am Gunasekaran M, a passionate and motivated Full Stack Developer from Rajapalayam, Tamil Nadu.
+
+Recently graduated with a B.Sc. in Mathematics (2024), and trained in both front-end and back-end technologies.
+
+Skilled in HTML, CSS, JavaScript, React.js, and Java (Core & Advanced) with Spring Boot and SQL.
+
+I love building real-world applications—my projects include a Course Registration System, Chatbot, and ATM Simulation App.
+
+Known for being a quick learner, self-motivated, and a great team player.
+
+I'm always eager to grow, solve challenges, and learn new tools in tech.
+
+Fluent in English and Tamil, with good communication and time management skills.</p>
+    </section>
+
+    <section id="education">
+      <h2>Education</h2>
+      <div class="education-cards">
+        <div class="project-card">
+          <h3>BSc Mathematics</h3>
+          <p><strong>College:</strong> RDM Government Artrs and Science College</p>
+          <p><strong><i class="fas fa-map-marker-alt"></i>
+</strong>Sivaganga</p>
+          <p><strong>Passed out:</strong> 2024</p>
+          <p><strong>CGPA:</strong> 6.3</p>
+        </div>
+        <div class="project-card">
+          <h3>HSC</h3>
+          <p><strong>Institution:</strong> P.A.C.M Higher Secondary School</p>
+          
+          <p><strong><i class="fas fa-map-marker-alt"></i></strong>Rajapalayam</p>
+          <p><strong>Passed out:</strong> 2021</p>
+          <p><strong>Percentage:</strong> 78%</p>
+        </div>
+        <div class="project-card">
+          <h3>SSLC</h3>
+          <p><strong>Institution:</strong> P.A.C.M Higher Secondary School</p>
+          <p><strong><i class="fas fa-map-marker-alt"></i></strong>Rajapalayam</p>
+          <p><strong>Passed out:</strong> 2019</p>
+          <p><strong>Percentage:</strong> 67%</p>
+        </div>
+      </div>
+    </section>
+     <section id="skills">
+      <h2>Technical Skills</h2>
+      <ul>
+        <li><strong>Frontend:</strong> HTML5, CSS3, React.js</li>
+        <li><strong>Backend:</strong> Core Java, Advance Java, SpringBoot</li>
+        <li><strong>Database:</strong> SQL</li>
+      </ul>
+    </section>
+
+    <section id="certificates">
+      <h2>Certificates</h2>
+      <ol>
+        <li><strong>Full Stack Web Development Certification</strong> – 2025</li>
+      </ol>
+      <ul>
+        <li>Learned frontend/backend development with React.js, HTML, CSS, JavaScript</li>
+        <li>SQL database management for efficient data handling</li>
+        <li>Core Java, Advanced Java, Spring Boot experience</li>
+      </ul>
+    </section>
+
+    <section id="projects">
+      <h2>Projects</h2>
+     <div class="project-cards">
+  <div class="project-card">
+    <strong>Chat Bot</strong><br />
+    Developed a secure full-stack Course Registration System with Spring Boot, Java, SQL, HTML, CSS, and JavaScript for managing courses and student enrollments.
+<br />
+    <em>Tech:</em> React.js, HTML, CSS<br />
+    <a href="https://chatbotallin.web.app ">View Project</a>
+  </div>
+  <div class="project-card">
+    <strong>Course Registration App</strong><br />
+    Built a responsive chatbot with React.js, HTML, CSS, and JavaScript, featuring instant messaging and an easy-to-update interface. 
+<br />
+    <em>Tech:</em> Spring Boot, Java,SQL<br />
+    <a href="#">View Project</a>
+  </div>
+  <div class="project-card">
+    <strong>ATM Application</strong><br />
+    Developed a Java ATM app with do-while and switch-case, enabling balance checks, deposits, withdrawals, and PIN changes via a simple menu.
+<br />
+    <em>Tech:</em> Core Java<br />
+    <a href="https://github.com/guna1522/ATMApplication.git">View Project</a>
+  </div>
+</div>
+</section>
+
+    <section id="languages">
+      <h2>Languages</h2>
+      <ul><li>English</li><li>Tamil</li></ul>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>You can reach me at: <strong>gunasekaranp9345@gmail.com</strong> or <strong>9345621193</strong></p>
+    </section>
+  </main>
+
+  <footer>&copy; 2025 Gunasekaran. All rights reserved.</footer>
+
+  <script>
+    // Menu toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+
+    // Scroll animation
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.hero-text, .profile-img, section').forEach(el => {
+      observer.observe(el);
+    });
+  </script>
+
+</body>
+</html>
